@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Bootstrap Poem Layout</title>
+		<link rel="stylesheet" href="styles/main.css">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="./bootstrap-3.2.0-dist/css/bootstrap.min.css">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="./bootstrap-3.2.0-dist/css/bootstrap-theme.min.css">
+	</head>
+	<body>
+<!--       <p><form>
+          <label>Compose one titled:</label><br>
+          <input id="anothertitle" type="text" size="20">
+          <input id="composetitled" type="submit" value="Go">
+        </form></p> 
+      <p><a id="permalink" href="">Permalink</a> to the verse at right.</p>-->
+   		<button onclick="grow_system()" type="button" class="btn btn-info">Grow L-System</button>
+   		<div class="well" id="poem" style="white-space:pre-line; word-wrap: break-word;">   			
+   		</div>
+  		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="./bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+		<script src="./l_system.js"></script>
+		<script type="text/javascript">
+			var current_state = ['DET', 'N', 'V'];
+
+			var pos_to_word = {};
+			pos_to_word[','] = [', '];
+			pos_to_word['.'] = ['. '];
+			pos_to_word['ADJ'] = ['wriggly '];
+			pos_to_word['ADV'] = ['abruptly '];
+			pos_to_word['CNJ'] = ['and '];
+			pos_to_word['DET'] = ['such '];
+			pos_to_word['MOD'] = ['should '];
+			pos_to_word['N'] = ['weasel '];
+			pos_to_word['P'] = ['on '];
+			pos_to_word['PRO'] = ['it '];
+			pos_to_word['TO'] = ['to '];
+			pos_to_word['V'] = ['dances '];
+			pos_to_word['VD'] = ['sneaked '];
+			pos_to_word['VN'] = ['had pounced '];
+
+
+			function make_buttons(){
+
+			}
+
+
+			function grow_system(){
+				var poem = document.getElementById("poem");
+				for (i = 0; i < current_state.length; i++) {
+					poem.appendChild(document.createTextNode(pos_to_word[current_state[i]]));
+				}
+				// poem.appendChild(document.createTextNode(current_state));
+				poem.appendChild(document.createElement("br"));
+				poem.appendChild(document.createTextNode(" "));
+				poem.appendChild(document.createElement("br"));
+				current_state = l_transform(current_state, rules);
+			}
+		</script>		
+	</body>
+</html>
