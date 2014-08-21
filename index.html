@@ -27,21 +27,24 @@
 		<script type="text/javascript">
 			var current_state = ['DET', 'N', 'V'];
 
+			pos_to_word_list = [];
+
 			var pos_to_word = {};
 			pos_to_word[','] = [', '];
 			pos_to_word['.'] = ['. '];
-			pos_to_word['ADJ'] = ['wriggly '];
-			pos_to_word['ADV'] = ['abruptly '];
-			pos_to_word['CNJ'] = ['and '];
-			pos_to_word['DET'] = ['such '];
-			pos_to_word['MOD'] = ['should '];
-			pos_to_word['N'] = ['weasel '];
-			pos_to_word['P'] = ['on '];
-			pos_to_word['PRO'] = ['it '];
-			pos_to_word['TO'] = ['to '];
-			pos_to_word['V'] = ['dances '];
-			pos_to_word['VD'] = ['sneaked '];
-			pos_to_word['VN'] = ['had pounced '];
+			pos_to_word['ADJ'] = [' wriggly', ' sneaky', ' slippery', ' weaselly'];
+			pos_to_word['ADV'] = [' abruptly', ' quietly', ' flippantly', ' floatingly'];
+			pos_to_word['CNJ'] = [' and', ' if', ' although', ' for'];
+			pos_to_word['DET'] = [' such', ' this', ' that'];
+			pos_to_word['MOD'] = [' should', ' would', ' could'];
+			pos_to_word['N'] = [' weasel', ' dance', ' sneak', ' pounce'];
+			pos_to_word['P'] = [' on', ' at', ' around', ' atop'];
+			pos_to_word['PRO'] = [' it', ' they', ' me', ' I', ' he', ' him', ' her', ' his'];
+			pos_to_word['TO'] = [' to'];
+			pos_to_word['V'] = [' sneaks', ' pounces',' dances', ' weasels'];
+			pos_to_word['VD'] = [' sneaked', ' pounced', ' danced', ' weaseled'];
+			pos_to_word['VN'] = [' had sneaked', ' had pounced', ' had danced', ' had weaseled'];
+
 
 
 			function make_buttons(){
@@ -52,7 +55,8 @@
 			function grow_system(){
 				var poem = document.getElementById("poem");
 				for (i = 0; i < current_state.length; i++) {
-					poem.appendChild(document.createTextNode(pos_to_word[current_state[i]]));
+					posbl_words = pos_to_word[current_state[i]];
+					poem.appendChild(document.createTextNode(posbl_words[Math.floor(Math.random() * posbl_words.length)]));
 				}
 				// poem.appendChild(document.createTextNode(current_state));
 				poem.appendChild(document.createElement("br"));
