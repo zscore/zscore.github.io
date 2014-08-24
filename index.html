@@ -138,25 +138,12 @@
       var current_state = ['ADJ', 'N', 'V'];
 
       var pos_to_word = {};
-      pos_to_word[','] = [','];
-      pos_to_word['.'] = ['.'];
-      pos_to_word['ADJ'] = [' wriggly', ' sneaky', ' slippery', ' weaselly'];
-      pos_to_word['ADV'] = [' abruptly', ' quietly', ' flippantly', ' floatingly'];
-      pos_to_word['CNJ'] = [' and', ' if', ' although', ' for'];
-      pos_to_word['DET'] = [' such', ' this', ' that'];
-      pos_to_word['MOD'] = [' should', ' would', ' could'];
-      pos_to_word['N'] = [' weasel', ' dance', ' sneak', ' pounce'];
-      pos_to_word['P'] = [' on', ' at', ' around', ' atop'];
-      pos_to_word['PRO'] = [' it', ' they', ' me', ' I', ' he', ' him', ' her', ' his'];
-      pos_to_word['TO'] = [' to'];
-      pos_to_word['V'] = [' sneaks', ' pounces',' dances', ' weasels'];
-      pos_to_word['VD'] = [' sneaked', ' pounced', ' danced', ' weaseled'];
-      pos_to_word['VN'] = [' had sneaked', ' had pounced', ' had danced', ' had weaseled'];
+      pos_to_word['TO'] = 'to ';
 
       function read_inputs(){
         for(var i = 0; i < pos_list.length; i++){
-          pos_to_word[pos_list[i]] = [];
           if(pos_list[i] != 'TO'){
+            pos_to_word[pos_list[i]] = [];
             for(var j = 0; j < 5; j++){
               var word_to_add = document.getElementById(pos_list[i] + j).value;
               if(word_to_add != ''){
