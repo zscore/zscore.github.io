@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Bootstrap Poem Layout</title>
+		<title>L-System Generator</title>
 		<link rel="stylesheet" href="styles/main.css">
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="./bootstrap-3.2.0-dist/css/bootstrap.min.css">
@@ -10,14 +10,28 @@
 		<link rel="stylesheet" href="./bootstrap-3.2.0-dist/css/bootstrap-theme.min.css">
 	</head>
 	<body>
+  <header>
+  <h1> Generate L-System Text </h1>
+  <div class="col-md-12"> 
+  <div class="col-md-8">
+  <hr>
+  Based on <a href="http://www.itp.danmelancon.com/rwet/l-system-poem-system-poem-l-poem-l-system/">this project</a>. Click multiple times to grow out a sentence based on a stochastic grammar that maps POS: (POS, POS, POS) with random substitutions from text fields. If the system gets stuck, just hit restart and try again! 
+<hr>
+  </div>
+  </div>
+
+  </header>
 <!--       <p><form>
           <label>Compose one titled:</label><br>
           <input id="anothertitle" type="text" size="20">
           <input id="composetitled" type="submit" value="Go">
         </form></p> 
       <p><a id="permalink" href="">Permalink</a> to the verse at right.</p>-->
+      <div class="bottom_space"> 
    		<button onclick="grow_system()" type="button" class="btn btn-info">Grow L-System</button>
       <button onclick="clear_box()" type="button" class="btn btn-info">Restart the Poem</button>
+      </div>
+      <div class="bottom_space">
    		<div class="row">
         <div class="col-md-2"> 
         	<form>
@@ -125,6 +139,7 @@
         	</form>
         </div>
       	</div>
+        </div>
    		<div class="well" id="poem" style="white-space:pre-line; word-wrap: break-word;">   			
    		</div>
   		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
