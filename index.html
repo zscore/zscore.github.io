@@ -17,6 +17,114 @@
         </form></p> 
       <p><a id="permalink" href="">Permalink</a> to the verse at right.</p>-->
    		<button onclick="grow_system()" type="button" class="btn btn-info">Grow L-System</button>
+      <button onclick="clear_box()" type="button" class="btn btn-info">Restart the Poem</button>
+   		<div class="row">
+        <div class="col-md-2"> 
+        	<form>
+              <label>Partial Stop</label><br>
+              <input id=",0" type="text" size="20" placeholder=","><br>
+              <input id=",1" type="text" size="20"><br>
+              <input id=",2" type="text" size="20"><br>
+              <input id=",3" type="text" size="20"><br>
+              <input id=",4" type="text" size="20"><br>
+              <label>Full Stop</label><br>
+              <input id=".0" type="text" size="20" placeholder="."><br>
+              <input id=".1" type="text" size="20"><br>
+              <input id=".2" type="text" size="20"><br>
+              <input id=".3" type="text" size="20"><br>
+              <input id=".4" type="text" size="20">
+        	</form>
+        </div>
+      	<div class="col-md-2"> 
+        	<form>
+              <label>Adjective</label><br>
+              <input id="ADJ0" type="text" size="20" placeholder="fast"><br>
+              <input id="ADJ1" type="text" size="20"><br>
+              <input id="ADJ2" type="text" size="20"><br>
+              <input id="ADJ3" type="text" size="20"><br>
+              <input id="ADJ4" type="text" size="20"><br>
+       		  <label>Adverb</label><br>
+              <input id="ADV0" type="text" size="20" placeholder="quickly"><br>
+              <input id="ADV1" type="text" size="20"><br>
+              <input id="ADV2" type="text" size="20"><br>
+              <input id="ADV3" type="text" size="20"><br>
+              <input id="ADV4" type="text" size="20">
+        	</form>
+        </div>
+        <div class="col-md-2"> 
+        	<form>
+              <label>Conjunction</label><br>
+              <input id="CNJ0" type="text" size="20" placeholder="and"><br>
+              <input id="CNJ1" type="text" size="20"><br>
+              <input id="CNJ2" type="text" size="20"><br>
+              <input id="CNJ3" type="text" size="20"><br>
+              <input id="CNJ4" type="text" size="20"><br>
+        	</form>
+        	<form>
+              <label>Determiner/Qualifier</label><br>
+              <input id="DET0" type="text" size="20" placeholder="this"><br>
+              <input id="DET1" type="text" size="20" placeholder="that"><br>
+              <input id="DET2" type="text" size="20"><br>
+              <input id="DET3" type="text" size="20"><br>
+              <input id="DET4" type="text" size="20"><br>
+        	</form>        	
+        </div>
+      	<div class="col-md-2"> 
+        	<form>
+              <label>Modal Auxilary</label><br>
+              <input id="MOD0" type="text" size="20" placeholder="can"><br>
+              <input id="MOD1" type="text" size="20" placeholder="should"><br>
+              <input id="MOD2" type="text" size="20" placeholder="will"><br>
+              <input id="MOD3" type="text" size="20"><br>
+              <input id="MOD4" type="text" size="20"><br>
+        	</form>
+          <label>Noun (verb should agree)</label><br>
+              <input id="N0" type="text" size="20" placeholder="cat"><br>
+              <input id="N1" type="text" size="20"><br>
+              <input id="N2" type="text" size="20"><br>
+              <input id="N3" type="text" size="20"><br>
+              <input id="N4" type="text" size="20"><br>
+        	</form>
+        </div>
+     	<div class="col-md-2"> 
+        	<form>
+              <label>Preposition</label><br>
+              <input id="P0" type="text" size="20" placeholder="at"><br>
+              <input id="P1" type="text" size="20"><br>
+              <input id="P2" type="text" size="20"><br>
+              <input id="P3" type="text" size="20"><br>
+              <input id="P4" type="text" size="20"><br>
+              <label>Pronoun</label><br>
+              <input id="PRO0" type="text" size="20" placeholder="I"><br>
+              <input id="PRO1" type="text" size="20"><br>
+              <input id="PRO2" type="text" size="20"><br>
+              <input id="PRO3" type="text" size="20"><br>
+              <input id="PRO4" type="text" size="20"><br>
+        	</form>
+        </div>
+     	<div class="col-md-2"> 
+        	<form>
+              <label>Present Tense Verb</label><br>
+              <input id="V0" type="text" size="20" placeholder="walks"><br>
+              <input id="V1" type="text" size="20"><br>
+              <input id="V2" type="text" size="20"><br>
+              <input id="V3" type="text" size="20"><br>
+              <input id="V4" type="text" size="20"><br>
+              <label>Past Tense Verb</label><br>
+              <input id="VD0" type="text" size="20" placeholder="walked"><br>
+              <input id="VD1" type="text" size="20"><br>
+              <input id="VD2" type="text" size="20"><br>
+              <input id="VD3" type="text" size="20"><br>
+              <input id="VD4" type="text" size="20"><br>
+              <label>Past Participle</label><br>
+              <input id="VN0" type="text" size="20" placeholder="had walked"><br>
+              <input id="VN1" type="text" size="20"><br>
+              <input id="VN2" type="text" size="20"><br>
+              <input id="VN3" type="text" size="20"><br>
+              <input id="VN4" type="text" size="20"><br>
+        	</form>
+        </div>
+      	</div>
    		<div class="well" id="poem" style="white-space:pre-line; word-wrap: break-word;">   			
    		</div>
   		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -25,34 +133,43 @@
 		<script src="./bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
 		<script src="./l_system.js"></script>
 		<script type="text/javascript">
-			var current_state = ['DET', 'N', 'V'];
 
-			pos_to_word_list = [];
+      var pos_list = [',', '.', 'ADJ', 'ADV', 'CNJ', 'DET', 'MOD', 'N', 'P', 'PRO', 'TO', 'V', 'VD', 'VN'];
+      var current_state = ['ADJ', 'N', 'V'];
 
-			var pos_to_word = {};
-			pos_to_word[','] = [', '];
-			pos_to_word['.'] = ['. '];
-			pos_to_word['ADJ'] = [' wriggly', ' sneaky', ' slippery', ' weaselly'];
-			pos_to_word['ADV'] = [' abruptly', ' quietly', ' flippantly', ' floatingly'];
-			pos_to_word['CNJ'] = [' and', ' if', ' although', ' for'];
-			pos_to_word['DET'] = [' such', ' this', ' that'];
-			pos_to_word['MOD'] = [' should', ' would', ' could'];
-			pos_to_word['N'] = [' weasel', ' dance', ' sneak', ' pounce'];
-			pos_to_word['P'] = [' on', ' at', ' around', ' atop'];
-			pos_to_word['PRO'] = [' it', ' they', ' me', ' I', ' he', ' him', ' her', ' his'];
-			pos_to_word['TO'] = [' to'];
-			pos_to_word['V'] = [' sneaks', ' pounces',' dances', ' weasels'];
-			pos_to_word['VD'] = [' sneaked', ' pounced', ' danced', ' weaseled'];
-			pos_to_word['VN'] = [' had sneaked', ' had pounced', ' had danced', ' had weaseled'];
+      var pos_to_word = {};
 
+      function read_inputs(){
+        for(var i = 0; i < pos_list.length; i++){
+          pos_to_word[pos_list[i]] = [];
+          if(pos_list[i] != 'TO'){
+            for(var j = 0; j < 5; j++){
+              var word_to_add = document.getElementById(pos_list[i] + j).value;
+              if(word_to_add != ''){
+                pos_to_word[pos_list[i]] = pos_to_word[pos_list[i]].concat([word_to_add + ' ']); 
+              }
+            }
+          }
+        }
+      }
 
+      function init_poem(){
+        current_state = [pos_list[Math.floor(Math.random() * pos_list.length)]];
+        current_state = l_transform(current_state, rules);
+      }
 
-			function make_buttons(){
+      $( document ).ready(function() {
+        init_poem();
+      });
 
-			}
+      function clear_box(elementID){
+          document.getElementById("poem").innerHTML = "";
+          init_poem();
+      }
 
 
 			function grow_system(){
+        read_inputs();
 				var poem = document.getElementById("poem");
 				for (i = 0; i < current_state.length; i++) {
 					posbl_words = pos_to_word[current_state[i]];
