@@ -4,4 +4,5 @@ title: About
 permalink: /about/
 ---
 
-My name is Zane Blanton, and  this is a Jekyll site that I threw together.
+My name is Zane Blanton, and I'm usually confused. Sometimes I want to share my confusion.
+My [LinkedIn](https://www.linkedin.com/in/zane-blanton-b7b62145) is here if you want my employment history.
