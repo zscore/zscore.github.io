@@ -8,11 +8,11 @@ categories: data
 ## The Setup
 
 
-I was briefly obsessed with the idea of improving the cycling experience around Chicago. The idea was that we could mount accelerometers to bicycles' handlebars and use the data to map street quality. I had visions of modeling the effects of individual cyclists' and of applying some really neat DSP filters to back out pavement qualities. Then, we would take these street ratings and put a routing engine on top. If you want to
+I was briefly obsessed with the idea of improving the cycling experience around Chicago. The idea was that we could mount accelerometers to bicycles' handlebars and use the data to map street quality. I had visions of modeling the effects of individual cyclists and of applying some really neat DSP filters to back out pavement qualities. Then, we would take these street ratings and put a routing engine on top. If you want to
 watch the presentation instead of read the rest, it's on [YouTube](www.linkedin.com/in/zane-blanton-b7b62145).
 
 
-## Difficulties that one runs into:
+## Difficulties One Runs Into
 
 1. Recruiting users (the app has no features for the user and drains a lot of battery, and the handlebar mounts put the user's phone at risk)
 2. Creating and deploying apps across iOS and Android.
