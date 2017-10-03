@@ -9,7 +9,7 @@ categories: data
 
 
 I was briefly obsessed with the idea of improving the cycling experience around Chicago. The idea was that we could mount accelerometers to bicycles' handlebars and use the data to map street quality. I had visions of modeling the effects of individual cyclists and of applying some really neat DSP filters to back out pavement qualities. Then, we would take these street ratings and put a routing engine on top. If you want to
-watch the presentation instead of read the rest, it's on [YouTube](www.linkedin.com/in/zane-blanton-b7b62145).
+watch the presentation instead of read the rest, it's on [YouTube](https://www.youtube.com/watch?v=kGIMsdWO7tE).
 
 
 ## Difficulties One Runs Into
@@ -29,7 +29,7 @@ Inevitably though, one bumps up against the idea that more money could solve the
 1. You can pay developers to do all the technical work well and data scientists and engineers to properly analyze the data.
 2. You can hire an engineering firm to go around streets with a
 [laser truck](http://www.acuitylaser.com/products/category/road-profiling)
-and measure the actual characteristics of the data:
+and measure the actual characteristics of the data.
 3. You can pay to install bicycle lanes throughout the city.
 4. You can pay lobbyists to increase government support for bicycle lanes.
 
