@@ -13,14 +13,15 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: dat-data-doe.dat
-# email: 
+title: personal_branding.dat
+# email:
 description: > # this means to ignore newlines until "baseurl:"
-  professional data scientist who is mostly confused and sometimes blogs.
+  all the news that's fit to push
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://zscore.github.io/" # the base hostname & protocol for your site
 twitter_username: at_least_weasel
 github_username:  zscore
+linkedin_username: zane-blanton-b7b62145
 
 # Build settings
 markdown: kramdown
