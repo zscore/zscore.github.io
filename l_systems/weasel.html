@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Bootstrap Poem Layout</title>
+		<title>Weasel Thought Simulator</title>
 		<link rel="stylesheet" href="styles/main.css">
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="./bootstrap-3.2.0-dist/css/bootstrap.min.css">
@@ -14,10 +14,10 @@
           <label>Compose one titled:</label><br>
           <input id="anothertitle" type="text" size="20">
           <input id="composetitled" type="submit" value="Go">
-        </form></p> 
+        </form></p>
       <p><a id="permalink" href="">Permalink</a> to the verse at right.</p>-->
    		<button onclick="grow_system()" type="button" class="btn btn-info">Grow L-System</button>
-   		<div class="well" id="poem" style="white-space:pre-line; word-wrap: break-word;">   			
+   		<div class="well" id="poem" style="white-space:pre-line; word-wrap: break-word;">
    		</div>
   		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -46,12 +46,6 @@
 			pos_to_word['VN'] = [' had sneaked', ' had pounced', ' had danced', ' had weaseled'];
 
 
-
-			function make_buttons(){
-
-			}
-
-
 			function grow_system(){
 				var poem = document.getElementById("poem");
 				for (i = 0; i < current_state.length; i++) {
@@ -64,6 +58,6 @@
 				poem.appendChild(document.createElement("br"));
 				current_state = l_transform(current_state, rules);
 			}
-		</script>		
+		</script>
 	</body>
 </html>
