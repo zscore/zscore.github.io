@@ -21,7 +21,6 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://zscore.github.io/" # the base hostname & protocol for your site
 twitter_username: at_least_weasel
 github_username:  zscore
-linkedin_username: zane-blanton-b7b62145
 
 # Build settings
 markdown: kramdown
