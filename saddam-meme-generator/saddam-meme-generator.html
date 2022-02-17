@@ -112,16 +112,6 @@
       var saddam_height = 137;
 
 
-      // Konva.Image.fromURL('./assets/saddam-transparent.png', function (darthNode) {
-      //   saddamNode.setAttrs({
-      //     x: stage.width() / 2 - saddam_width / 2,
-      //     y: stage.height() / 2 - saddam_height / 2,
-      //     draggable: true,
-      //   });
-      //   layer.add(saddamNode);
-      // });
-
-
       function drawImage(imageObj) {
         var saddamImg = new Konva.Image({
           image: imageObj,
@@ -129,23 +119,21 @@
           y: stage.height() / 2 - saddam_height / 2,
           draggable: true,
         });
-        // saddamImg.crossOrigin = 'Anonymous';
-
         var trSaddam = new Konva.Transformer({
           nodes: [saddamImg],
           centeredScaling: true,
         });
-        layer.add(saddamImg);
         layer.add(trSaddam);
+
+        layer.add(saddamImg);
         window.trSaddam = trSaddam;
+        // window.saddamImg = saddamImg
       }
       var imageObj = new Image();
       imageObj.onload = function () {
         drawImage(this);
       };
-    // //   imageObj.src = '/assets/darth-vader.jpg';
       imageObj.src = 'assets/saddam-transparent.png';
-      // imageObj.crossOrigin = 'Anonymous';
 
 
     
@@ -153,7 +141,7 @@
 
       // add the layer to the stage
       stage.add(layer);
-      const transformers = [trLine, trText];
+      // const transformers = [trLine, trText, trSaddam];
 
       //  control ordering: https://konvajs.org/docs/groups_and_layers/Layering.html done
       // how to export: https://konvajs.org/docs/data_and_serialization/High-Quality-Export.html, should customize using x,y and width and height from uploaded image. https://konvajs.org/api/Konva.Stage.html#toDataURL__anchor
@@ -165,6 +153,9 @@
       // var saddamImg = new Image();
       // saddamImg.src = './assets/saddam-transparent.png'
       
+      
+
+
 
       $("#file_input").change(function(e){
 
@@ -216,6 +207,10 @@
           // add them back afterwards
           // ex: trLine.remove()
           // layer.add(trLine)
+        const transformers = layer.getChildren(function(node){
+        return node.getClassName() === 'Transformer';
+        });
+
           for (const tr of transformers){
              tr.remove();
           }
