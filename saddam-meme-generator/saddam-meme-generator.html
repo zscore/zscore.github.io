@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<!-- saved from url=(0061)https://konvajs.org/downloads/code/events/Binding_Events.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="./Konva Shape Events Demo_files/konva.min.js"></script>
+    
+    <title>Saddam Meme Generator</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #f0f0f0;
+      }
+
+      #buttons {
+        position: absolute;
+        top: 5px;
+        left: 10px;
+      }
+
+      #buttons > input {
+        padding: 10px;
+        display: block;
+        margin-top: 5px;
+      }
+
+      #upload {
+        position: absolute;
+        top: 45px;
+        left: 10px;
+      }
+
+      #upload > input {
+        padding: 10px;
+        display: block;
+        margin-top: 5px;
+        /* position: absolute;
+        top: 5px;
+        left: 10px; */
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <div id="container"><div class="konvajs-content" role="presentation" style="position: relative; user-select: none; width: 1728px; height: 1000px;"><canvas width="3456" height="2000" style="padding: 0px; margin: 0px; border: 0px; background: transparent; position: absolute; top: 0px; left: 0px; width: 1728px; height: 1000px; display: block;"></canvas></div></div>
+    <div id="buttons"><button id="save">Save as image</button></div>
+    <div id="upload"><input type="file" name="file" id="file_input" required="" accept="image/png, image/jpeg"></div>
+    <!-- <div id="buttons"><button id="upload">Upload background image</button></div> -->
+
+    <script>
+      function writeMessage(message) {
+        text.text(message);
+      }
+      var width = window.innerWidth;
+      var height = window.innerHeight;
+      function downloadURI(uri, name) {
+        var link = document.createElement('a');
+        link.download = name;
+        link.href = uri;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        delete link;
+      }
+
+
+      var stage = new Konva.Stage({
+        container: 'container',
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+
+      var layer = new Konva.Layer();
+
+      var text = new Konva.Text({
+        x: stage.width() / 2 + 10,
+        y: stage.height() / 2 - 240,
+        fontFamily: 'Arial',
+        fontSize: 24,
+        fontStyle: 'bold',
+        text: 'Saddam\nHussein',
+        fill: 'black',
+        draggable: 'true'
+      });
+      var trText = new Konva.Transformer({
+        nodes: [text],
+        centeredScaling: true,
+        borderEnabled: false,
+        // enabledAnchors: false,
+      });
+      layer.add(trText);
+
+      var blackLine = new Konva.Line({
+        points: [stage.width() / 2, stage.height() / 2 - 30, stage.width() / 2, stage.height() / 2 - 230],
+        stroke: 'black',
+        strokeWidth: 4,
+        lineCap: 'butt',
+        lineJoin: 'butt',
+        draggable: true,
+      });
+      layer.add(blackLine)
+
+      var trLine = new Konva.Transformer({
+        nodes: [blackLine],
+        centeredScaling: true,
+      });
+      layer.add(trLine);
+
+      var saddam_width = 324;
+      var saddam_height = 137;
+
+
+      // Konva.Image.fromURL('./assets/saddam-transparent.png', function (darthNode) {
+      //   saddamNode.setAttrs({
+      //     x: stage.width() / 2 - saddam_width / 2,
+      //     y: stage.height() / 2 - saddam_height / 2,
+      //     draggable: true,
+      //   });
+      //   layer.add(saddamNode);
+      // });
+
+
+      function drawImage(imageObj) {
+        var saddamImg = new Konva.Image({
+          image: imageObj,
+          x: stage.width() / 2 - saddam_width / 2,
+          y: stage.height() / 2 - saddam_height / 2,
+          draggable: true,
+        });
+        // saddamImg.crossOrigin = 'Anonymous';
+
+        var trSaddam = new Konva.Transformer({
+          nodes: [saddamImg],
+          centeredScaling: true,
+        });
+        layer.add(saddamImg);
+        layer.add(trSaddam);
+        window.trSaddam = trSaddam;
+      }
+      var imageObj = new Image();
+      imageObj.onload = function () {
+        drawImage(this);
+      };
+    // //   imageObj.src = '/assets/darth-vader.jpg';
+      imageObj.src = 'assets/saddam-transparent.png';
+      // imageObj.crossOrigin = 'Anonymous';
+
+
+    
+      layer.add(text);
+
+      // add the layer to the stage
+      stage.add(layer);
+      const transformers = [trLine, trText];
+
+      //  control ordering: https://konvajs.org/docs/groups_and_layers/Layering.html done
+      // how to export: https://konvajs.org/docs/data_and_serialization/High-Quality-Export.html, should customize using x,y and width and height from uploaded image. https://konvajs.org/api/Konva.Stage.html#toDataURL__anchor
+      // also need to figure out how to remove the handles on the resize/rotate 
+      // todo: figure out how to create a Konva image from a js image that we upload via button (https://konvajs.org/api/Konva.Image.html#Image__anchor) https://stackoverflow.com/questions/58375428/how-to-upload-and-load-image-in-konvajs-canvas 
+
+      // listen for the file input change event and load the image.
+      
+      // var saddamImg = new Image();
+      // saddamImg.src = './assets/saddam-transparent.png'
+      
+
+      $("#file_input").change(function(e){
+
+        var URL = window.webkitURL || window.URL;
+        var url = URL.createObjectURL(e.target.files[0]);
+        var img = new Image();
+        img.src = url;
+
+        img.onload = function() {
+
+          var img_width = img.width;
+          var img_height = img.height;
+
+          // calculate dimensions to get max 300px
+          var max = 600;
+          var ratio = (img_width > img_height ? (img_width / max) : (img_height / max))
+
+          // now load the Konva image
+          var theImg = new Konva.Image({
+            image: img,
+            x: 200,
+            y: 200,
+            width: img_width/ratio,
+            height: img_height/ratio,
+            draggable: true,
+            // rotation: 20
+          });
+          layer.add(theImg);
+          theImg.moveToBottom();
+          window.theImg = theImg;
+          // layer.draw();
+        }
+      });
+
+      function downloadURI(uri, name) {
+        var link = document.createElement('a');
+        link.download = name;
+        link.href = uri;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        delete link;
+      }
+
+      document.getElementById('save').addEventListener(
+        'click',
+        function () {
+          // iterate through all transforms and remove them before rendering
+          // add them back afterwards
+          // ex: trLine.remove()
+          // layer.add(trLine)
+          for (const tr of transformers){
+             tr.remove();
+          }
+          var dataURL = stage.toDataURL({ pixelRatio: 3, x: window.theImg.x(), y: window.theImg.y(),
+                                          width: window.theImg.width(), height: window.theImg.height()});
+          downloadURI(dataURL, 'stage.png');
+          for (const tr of transformers){
+            layer.add(tr);
+          }
+        },
+        false
+      );
+    </script>
+  
+
+</body></html>
