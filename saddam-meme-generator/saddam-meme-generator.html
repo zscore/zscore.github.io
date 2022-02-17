@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<!-- saved from url=(0061)https://konvajs.org/downloads/code/events/Binding_Events.html -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script src="./js/jquery.min.js"></script>
     <script src="./js/konva.min.js"></script>
     
     <title>Saddam Meme Generator</title>
+    How to use:
+    1. Upload an image using the Datei auswählen / choose data button.
+    2. Adjust the Saddam Hussein elements within the uploaded image.
+    3. Hit the "Save as image" button. Only the borders of the image will be exported.
     <style>
       body {
         margin: 0;
@@ -35,9 +38,6 @@
         padding: 10px;
         display: block;
         margin-top: 5px;
-        /* position: absolute;
-        top: 5px;
-        left: 10px; */
       }
 
     </style>
@@ -47,7 +47,6 @@
     <div id="container"><div class="konvajs-content" role="presentation" style="position: relative; user-select: none; width: 1728px; height: 1000px;"><canvas width="3456" height="2000" style="padding: 0px; margin: 0px; border: 0px; background: transparent; position: absolute; top: 0px; left: 0px; width: 1728px; height: 1000px; display: block;"></canvas></div></div>
     <div id="buttons"><button id="save">Save as image</button></div>
     <div id="upload"><input type="file" name="file" id="file_input" required="" accept="image/png, image/jpeg"></div>
-    <!-- <div id="buttons"><button id="upload">Upload background image</button></div> -->
 
     <script>
       function writeMessage(message) {
@@ -88,7 +87,6 @@
         nodes: [text],
         centeredScaling: true,
         borderEnabled: false,
-        // enabledAnchors: false,
       });
       layer.add(trText);
 
@@ -127,7 +125,6 @@
 
         layer.add(saddamImg);
         window.trSaddam = trSaddam;
-        // window.saddamImg = saddamImg
       }
       var imageObj = new Image();
       imageObj.onload = function () {
@@ -141,22 +138,6 @@
 
       // add the layer to the stage
       stage.add(layer);
-      // const transformers = [trLine, trText, trSaddam];
-
-      //  control ordering: https://konvajs.org/docs/groups_and_layers/Layering.html done
-      // how to export: https://konvajs.org/docs/data_and_serialization/High-Quality-Export.html, should customize using x,y and width and height from uploaded image. https://konvajs.org/api/Konva.Stage.html#toDataURL__anchor
-      // also need to figure out how to remove the handles on the resize/rotate 
-      // todo: figure out how to create a Konva image from a js image that we upload via button (https://konvajs.org/api/Konva.Image.html#Image__anchor) https://stackoverflow.com/questions/58375428/how-to-upload-and-load-image-in-konvajs-canvas 
-
-      // listen for the file input change event and load the image.
-      
-      // var saddamImg = new Image();
-      // saddamImg.src = './assets/saddam-transparent.png'
-      
-      
-
-
-
       $("#file_input").change(function(e){
 
         var URL = window.webkitURL || window.URL;
@@ -176,17 +157,16 @@
           // now load the Konva image
           var theImg = new Konva.Image({
             image: img,
-            x: 200,
-            y: 200,
+            x: stage.width() / 2 - img_width / 2,
+            y: stage.height() / 2 - img_height / 2,
             width: img_width/ratio,
             height: img_height/ratio,
             draggable: true,
-            // rotation: 20
           });
           layer.add(theImg);
           theImg.moveToBottom();
           window.theImg = theImg;
-          // layer.draw();
+          // layer.draw(); Do we need this????
         }
       });
 
