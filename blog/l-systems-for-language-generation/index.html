@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>L-Systems for Language Generation — Zane Blanton</title>
+<meta name="description" content="Using part-of-speech trigrams as the production rules of an L-system, so that each generation expands into a longer and stranger sentence.">
+<meta name="author" content="Zane Blanton">
+<meta property="og:title" content="L-Systems for Language Generation — Zane Blanton">
+<meta property="og:description" content="Using part-of-speech trigrams as the production rules of an L-system, so that each generation expands into a longer and stranger sentence.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://zscore.github.io/blog/l-systems-for-language-generation/">
+<link rel="canonical" href="https://zscore.github.io/blog/l-systems-for-language-generation/">
+<link rel="alternate" type="application/rss+xml" title="Zane Blanton" href="/feed.xml">
+<link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="/">zane blanton</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="/">Projects</a>
+      <a href="/about/">About</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+
+    <article class="prose">
+      <a class="back" href="/">&larr; projects</a>
+      <h1>L-Systems for Language Generation</h1>
+      <p class="meta">October 3, 2017</p>
+
+      <h2>L-Systems</h2>
+      <p>
+        So this is quite an old project, but I figured I should give it a bit of a
+        writeup. I was inspired by
+        <a href="http://www.itp.danmelancon.com/rwet/l-system-poem-system-poem-l-poem-l-system/">this project</a>
+        to make my own L-system generator. What I did was take a corpus (something
+        from NLTK for python) that was tagged with part of speech then extract all
+        3-grams, like <code>ADJ, ADJ, N</code>, and then keep all 3-grams above a
+        frequency threshold.
+      </p>
+      <p>
+        These became the production rules for my grammar. At each step in the
+        L-system, I randomly selected a production rule for each POS in order to
+        expand it. Then, I randomly selected words from within each Part of Speech to
+        populate the new sentence.
+      </p>
+      <p>
+        I have an L-System that's supposed to simulate the internal world of a weasel
+        <a href="/l_systems/weasel.html">here</a>, and a
+        <a href="/l_systems/l-system.html">general one</a> that lets you pick the
+        words you want to substitute within classes. My friend put in things like
+        *record scratch* for full stop, which is rather amusing.
+      </p>
+
+      <p class="prose-foot">
+        Both generators still run:
+        <a href="/l_systems/l-system.html">the general one</a> and
+        <a href="/l_systems/weasel.html">the weasel</a>.
+      </p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Zane Blanton</span>
+    <nav>
+      <a href="https://github.com/zscore">GitHub</a> &nbsp;
+      <a href="https://www.linkedin.com/in/zane-blanton-b7b62145">LinkedIn</a> &nbsp;
+      <a href="https://medium.com/@zeblanton">Medium</a> &nbsp;
+      <a href="/feed.xml">RSS</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

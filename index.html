@@ -1,23 +1,310 @@
----
-layout: default
----
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zane Blanton</title>
+<meta name="description" content="Projects by Zane Blanton — generative audiovisual work, language toys, and applied data science.">
+<meta name="author" content="Zane Blanton">
+<meta property="og:title" content="Zane Blanton">
+<meta property="og:description" content="Generative audiovisual work, language toys, and applied data science.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://zscore.github.io/">
+<link rel="canonical" href="https://zscore.github.io/">
+<link rel="alternate" type="application/rss+xml" title="Zane Blanton" href="/feed.xml">
+<link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
 
-<div class="home">
+<a class="skip-link" href="#main">Skip to content</a>
 
-  <h1 class="page-heading">Posts</h1>
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="/">zane blanton</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="/" aria-current="page">Projects</a>
+      <a href="/about/">About</a>
+    </nav>
+  </div>
+</header>
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+<main id="main">
+  <div class="wrap">
 
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title | escape }}</a>
-        </h2>
+    <section class="hero">
+      <h1>Coding portfolio</h1>
+      <p>
+        A mix of creative projects, some statistics presentations, and a few tech
+        tools. It's all below, and anything marked <strong>live</strong> runs
+        right here in your browser.
+      </p>
+    </section>
+
+    <div class="section-head">
+      <h2>Projects</h2>
+      <span class="count">12</span>
+    </div>
+
+    <ul class="projects">
+
+      <li class="card">
+        <div class="card-top">
+          <h3><a href="https://www.instagram.com/p/Dbtq2IwTkZt/">ethereal jungle</a></h3>
+          <span class="year">2026</span>
+        </div>
+        <p>
+          A generative audiovisual set where the music and the visuals are siblings
+          rather than parent and child. Strudel drives the pattern engine, superdough
+          renders the audio, and three.js draws a four-storey forest on WebGPU — but
+          the visualizer never reads the audio. Both sides read the same control bus,
+          so one brightness walk moves the mode ladder and the camera altitude at once.
+        </p>
+        <div class="card-foot">
+          <a class="repo" href="https://www.instagram.com/p/Dbtq2IwTkZt/">instagram</a>
+          <a class="repo" href="https://github.com/zscore/ethereal-jungle">repo</a>
+          <span class="tag">JavaScript</span>
+          <span class="tag">three.js</span>
+          <span class="tag">WebGPU</span>
+          <span class="tag">Strudel</span>
+        </div>
       </li>
-    {% endfor %}
-  </ul>
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+      <li class="card">
+        <div class="card-top">
+          <h3><a href="https://www.instagram.com/p/DcGgQZlzOgS/">flat cats</a></h3>
+          <span class="year">2026</span>
+        </div>
+        <p>
+          Eighty cat photographs, every one CC0 or public domain, segmented twice
+          over — once cut from the background and once split into body parts. The
+          scraper re-checks each file's own licence metadata rather than trusting the
+          search filter. The corpus feeds a browser piece scored to Easley Blackwood's
+          seventeen-note microtonal etude.
+        </p>
+        <div class="card-foot">
+          <a class="repo" href="https://www.instagram.com/p/DcGgQZlzOgS/">instagram</a>
+          <a class="repo" href="https://github.com/zscore/flat-cats">repo</a>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Python</span>
+          <span class="tag">corpus</span>
+        </div>
+      </li>
 
-</div>
+      <li class="card">
+        <div class="card-top">
+          <h3><a href="https://zscore.github.io/white-dots-on-black/">white dots on black</a></h3>
+          <span class="year">2026</span>
+        </div>
+        <p>
+          An interactive tool for making pictures in the manner of Sigmar Polke's
+          Dublin series — fields of white dots on a dark ground, tuned by size,
+          density and distribution until the thing tips from order into something
+          closer to weather.
+        </p>
+        <div class="card-foot">
+          <a class="live" href="https://zscore.github.io/white-dots-on-black/">live</a>
+          <a class="repo" href="https://github.com/zscore/white-dots-on-black">repo</a>
+          <span class="tag">JavaScript</span>
+          <span class="tag">generative art</span>
+        </div>
+      </li>
+
+      <li class="card">
+        <div class="card-top">
+          <h3><a href="https://zscore.github.io/wortspiel/">Wortzusammensetzungsmaschine</a></h3>
+          <span class="year">2026</span>
+        </div>
+        <p>
+          A game about the one thing German is famous for. Pick your starting pieces,
+          stack compounds as far as the dictionary will let you, and find out
+          afterwards how much longer a word you could have built.
+        </p>
+        <div class="card-foot">
+          <a class="live" href="https://zscore.github.io/wortspiel/">live</a>
+          <a class="repo" href="https://github.com/zscore/wortspiel">repo</a>
+          <span class="tag">JavaScript</span>
+          <span class="tag">German</span>
+          <span class="tag">games</span>
+        </div>
+      </li>
+
+      <li class="card">
+        <div class="card-top">
+          <h3><a href="https://zeblanton.medium.com/bjj-rag-system-92932713aaf6">bjj-rag</a></h3>
+          <span class="year">2026</span>
+        </div>
+        <p>
+          Retrieval over a few years of Brazilian jiu-jitsu training notes. Sessions
+          are parsed into structured records, chunked, embedded and indexed
+          incrementally, then queried in plain language. A second agent skips
+          retrieval entirely and runs sandboxed code against the sessions as a
+          dataframe when the question is really about trends.
+        </p>
+        <div class="card-foot">
+          <a class="repo" href="https://github.com/zscore/bjj-rag">repo</a>
+          <span class="tag">Python</span>
+          <span class="tag">RAG</span>
+          <span class="tag">ChromaDB</span>
+        </div>
+      </li>
+
+      <li class="card">
+        <div class="card-top">
+          <h3><a href="https://docs.google.com/presentation/d/e/2PACX-1vQLs8pv7v3NUYJM303DggGWSG1pvhqYcQpiw2u9oaINwqI2DJRuBJs1yq6-azUGmsFCLb93TobZaUU4/pub?start=false&amp;loop=false&amp;delayms=3000">A/B testing for fraud detection</a></h3>
+          <span class="year">2025</span>
+        </div>
+        <p>
+          A talk on running experiments where the thing you are measuring fights back.
+          It walks from choosing metrics and experimental units through power analysis
+          and champion&ndash;challenger rollouts, then into the parts that are peculiar to
+          fraud: labels that mature long after the decision, data censored by the
+          blocks you made, and the randomised exploration you need to see through it.
+        </p>
+        <div class="card-foot">
+          <a class="live" href="https://docs.google.com/presentation/d/e/2PACX-1vQLs8pv7v3NUYJM303DggGWSG1pvhqYcQpiw2u9oaINwqI2DJRuBJs1yq6-azUGmsFCLb93TobZaUU4/pub?start=false&amp;loop=false&amp;delayms=3000">slides</a>
+          <span class="tag">statistics</span>
+          <span class="tag">talk</span>
+          <span class="tag">fraud detection</span>
+        </div>
+      </li>
+
+      <li class="card">
+        <div class="card-top">
+          <h3><a href="https://zeblanton.medium.com/how-to-configure-a-custom-gpt-to-write-to-google-sheets-using-gcp-6a46325b763e">workout logger</a></h3>
+          <span class="year">2025</span>
+        </div>
+        <p>
+          Talk your way through a workout and have it land in a spreadsheet. A custom
+          GPT calls an OpenAPI-described Cloud Function, which appends the set to a
+          Google Sheet through a service account — so the logging happens in the same
+          conversation as the excuses.
+        </p>
+        <div class="card-foot">
+          <a class="repo" href="https://zeblanton.medium.com/how-to-configure-a-custom-gpt-to-write-to-google-sheets-using-gcp-6a46325b763e">medium</a>
+          <a class="repo" href="https://github.com/zscore/chatgpt-workout-logger">repo</a>
+          <span class="tag">Python</span>
+          <span class="tag">Google Cloud</span>
+          <span class="tag">OpenAPI</span>
+        </div>
+      </li>
+
+      <li class="card">
+        <div class="card-top">
+          <h3><a href="https://zeblanton.medium.com/playing-codenames-using-word-embeddings-74c258fe341c">codenames embeddings</a></h3>
+          <span class="year">2023</span>
+        </div>
+        <p>
+          A spymaster built out of word vectors. Given a board, it searches fastText
+          embeddings for the single word closest to the agents it wants and far from
+          the ones that end the game — which turns out to be a legible demonstration
+          of what embedding space actually knows about words.
+        </p>
+        <div class="card-foot">
+          <a class="repo" href="https://zeblanton.medium.com/playing-codenames-using-word-embeddings-74c258fe341c">medium</a>
+          <a class="repo" href="https://github.com/zscore/codenames-embeddings">repo</a>
+          <span class="tag">Python</span>
+          <span class="tag">fastText</span>
+          <span class="tag">NLP</span>
+        </div>
+      </li>
+
+      <li class="card">
+        <div class="card-top">
+          <h3><a href="/l_systems/l-system.html">L-systems for language</a></h3>
+          <span class="year">2017</span>
+        </div>
+        <p>
+          L-systems usually grow plants. This one grows sentences: part-of-speech
+          trigrams pulled from a corpus become rewrite rules, and each generation
+          expands the last into something longer and stranger but still grammatical
+          at the seams.
+        </p>
+        <div class="card-foot">
+          <a class="live" href="/l_systems/l-system.html">live</a>
+          <a class="repo" href="/blog/l-systems-for-language-generation/">write-up</a>
+          <a class="repo" href="https://github.com/zscore/zscore.github.io/tree/master/l_systems">repo</a>
+          <span class="tag">JavaScript</span>
+          <span class="tag">NLTK</span>
+          <span class="tag">generative text</span>
+        </div>
+      </li>
+
+      <li class="card">
+        <div class="card-top">
+          <h3><a href="https://github.com/zscore/multiple-comparisons-presentation">testing many hypotheses at once</a></h3>
+          <span class="year">2017</span>
+        </div>
+        <p>
+          A talk given at trivago on what goes wrong when you run a lot of tests and
+          only report the interesting ones — and which corrections are worth the power
+          they cost. The slides are live; the notebook behind them is in the repo.
+        </p>
+        <div class="card-foot">
+          <a class="live" href="https://zscore.github.io/multiple-comparisons-presentation/">live</a>
+          <span class="tag">statistics</span>
+          <span class="tag">talk</span>
+          <span class="tag">reveal.js</span>
+        </div>
+      </li>
+
+      <li class="card">
+        <div class="card-top">
+          <h3><a href="/blog/bicycle-pavement-data/">bicycle pavement data</a></h3>
+          <span class="year">2016</span>
+        </div>
+        <p>
+          Accelerometers on handlebars, ridden around Chicago to work out which
+          streets are actually rough. Noisy GPS trails get snapped to street
+          segments and the shaking gets filtered into a pavement rating, with a
+          routing engine on top. The write-up is as much about what stalls a
+          project like this &mdash; riders, ground truth, money &mdash; as about
+          the signal processing.
+        </p>
+        <div class="card-foot">
+          <a class="repo" href="/blog/bicycle-pavement-data/">write-up</a>
+          <a class="repo" href="https://github.com/zscore/pavement_analysis">analysis</a>
+          <a class="repo" href="https://github.com/zscore/pavement_rails">app</a>
+          <a class="repo" href="https://github.com/zscore/pavement_osrm">routing</a>
+          <a class="repo" href="https://github.com/zscore/pavement_docs">docs</a>
+          <span class="tag">Python</span>
+          <span class="tag">Jupyter</span>
+          <span class="tag">GIS</span>
+        </div>
+      </li>
+
+      <li class="card">
+        <div class="card-top">
+          <h3><a href="https://github.com/zscore/rrt_optimization">rapid response team assignment</a></h3>
+          <span class="year">2016</span>
+        </div>
+        <p>
+          A linear program, written in Julia with JuMP, for assigning CDC rapid
+          response teams to where they are needed. Done at my father's request, which
+          is a reasonable way to end up learning a solver.
+        </p>
+        <div class="card-foot">
+          <span class="tag">Julia</span>
+          <span class="tag">JuMP</span>
+          <span class="tag">optimization</span>
+        </div>
+      </li>
+
+    </ul>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Zane Blanton</span>
+    <nav>
+      <a href="https://github.com/zscore">GitHub</a> &nbsp;
+      <a href="https://www.linkedin.com/in/zane-blanton-b7b62145">LinkedIn</a> &nbsp;
+      <a href="https://medium.com/@zeblanton">Medium</a> &nbsp;
+      <a href="/feed.xml">RSS</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,30 +1,27 @@
----
-layout: null
----
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>{{ site.title | xml_escape }}</title>
-    <description>{{ site.description | xml_escape }}</description>
-    <link>{{ site.url }}{{ site.baseurl }}/</link>
-    <atom:link href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" rel="self" type="application/rss+xml"/>
-    <pubDate>{{ site.time | date_to_rfc822 }}</pubDate>
-    <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
-    <generator>Jekyll v{{ jekyll.version }}</generator>
-    {% for post in site.posts limit:10 %}
-      <item>
-        <title>{{ post.title | xml_escape }}</title>
-        <description>{{ post.content | xml_escape }}</description>
-        <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
-        <link>{{ post.url | prepend: site.baseurl | prepend: site.url }}</link>
-        <guid isPermaLink="true">{{ post.url | prepend: site.baseurl | prepend: site.url }}</guid>
-        {% for tag in post.tags %}
-        <category>{{ tag | xml_escape }}</category>
-        {% endfor %}
-        {% for cat in post.categories %}
-        <category>{{ cat | xml_escape }}</category>
-        {% endfor %}
-      </item>
-    {% endfor %}
+    <title>Zane Blanton</title>
+    <link>https://zscore.github.io/</link>
+    <description>Generative audiovisual work, language toys, and applied data science.</description>
+    <language>en</language>
+    <atom:link href="https://zscore.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>L-Systems for Language Generation</title>
+      <link>https://zscore.github.io/blog/l-systems-for-language-generation/</link>
+      <guid isPermaLink="true">https://zscore.github.io/blog/l-systems-for-language-generation/</guid>
+      <pubDate>Tue, 03 Oct 2017 17:00:00 +0100</pubDate>
+      <description>Part-of-speech trigrams as the production rules of an L-system, so each generation expands into a longer and stranger sentence.</description>
+    </item>
+
+    <item>
+      <title>Bicycle Pavement Data</title>
+      <link>https://zscore.github.io/blog/bicycle-pavement-data/</link>
+      <guid isPermaLink="true">https://zscore.github.io/blog/bicycle-pavement-data/</guid>
+      <pubDate>Sun, 11 Sep 2016 17:42:01 -0500</pubDate>
+      <description>Mapping Chicago street quality with accelerometers on bicycle handlebars, and what that taught me about the problems money solves.</description>
+    </item>
+
   </channel>
 </rss>

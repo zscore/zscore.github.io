@@ -1,63 +1,107 @@
 <!doctype html>
-<html>
-	<head>
-		<title>Weasel Thought Simulator</title>
-		<link rel="stylesheet" href="styles/main.css">
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="./bootstrap-3.2.0-dist/css/bootstrap.min.css">
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The weasel — Zane Blanton</title>
+<meta name="description" content="An L-system with a fixed vocabulary, simulating the internal world of a weasel.">
+<link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
 
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="./bootstrap-3.2.0-dist/css/bootstrap-theme.min.css">
-	</head>
-	<body>
-<!--       <p><form>
-          <label>Compose one titled:</label><br>
-          <input id="anothertitle" type="text" size="20">
-          <input id="composetitled" type="submit" value="Go">
-        </form></p>
-      <p><a id="permalink" href="">Permalink</a> to the verse at right.</p>-->
-   		<button onclick="grow_system()" type="button" class="btn btn-info">Grow L-System</button>
-   		<div class="well" id="poem" style="white-space:pre-line; word-wrap: break-word;">
-   		</div>
-  		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="./bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
-		<script src="./l_system.js"></script>
-		<script type="text/javascript">
-			var current_state = ['DET', 'N', 'V'];
+<a class="skip-link" href="#main">Skip to content</a>
 
-			pos_to_word_list = [];
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="/">zane blanton</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="/">Projects</a>
+      <a href="/about/">About</a>
+    </nav>
+  </div>
+</header>
 
-			var pos_to_word = {};
-			pos_to_word[','] = [', '];
-			pos_to_word['.'] = ['. '];
-			pos_to_word['ADJ'] = [' wriggly', ' sneaky', ' slippery', ' weaselly'];
-			pos_to_word['ADV'] = [' abruptly', ' quietly', ' flippantly', ' floatingly'];
-			pos_to_word['CNJ'] = [' and', ' if', ' although', ' for'];
-			pos_to_word['DET'] = [' such', ' this', ' that'];
-			pos_to_word['MOD'] = [' should', ' would', ' could'];
-			pos_to_word['N'] = [' weasel', ' dance', ' sneak', ' pounce'];
-			pos_to_word['P'] = [' on', ' at', ' around', ' atop'];
-			pos_to_word['PRO'] = [' it', ' they', ' me', ' I', ' he', ' him', ' her', ' his'];
-			pos_to_word['TO'] = [' to'];
-			pos_to_word['V'] = [' sneaks', ' pounces',' dances', ' weasels'];
-			pos_to_word['VD'] = [' sneaked', ' pounced', ' danced', ' weaseled'];
-			pos_to_word['VN'] = [' had sneaked', ' had pounced', ' had danced', ' had weaseled'];
+<main id="main">
+  <div class="wrap">
 
+    <section class="hero">
+      <h1>The weasel</h1>
+      <p>
+        The same stochastic part-of-speech grammar as the
+        <a href="/l_systems/l-system.html">general L-system</a>, but with the word
+        banks nailed shut around a single subject. Each click grows another line
+        of the weasel's interior monologue.
+      </p>
+      <p>
+        Written up <a href="/blog/l-systems-for-language-generation/">here</a>.
+      </p>
+    </section>
 
-			function grow_system(){
-				var poem = document.getElementById("poem");
-				for (i = 0; i < current_state.length; i++) {
-					posbl_words = pos_to_word[current_state[i]];
-					poem.appendChild(document.createTextNode(posbl_words[Math.floor(Math.random() * posbl_words.length)]));
-				}
-				// poem.appendChild(document.createTextNode(current_state));
-				poem.appendChild(document.createElement("br"));
-				poem.appendChild(document.createTextNode(" "));
-				poem.appendChild(document.createElement("br"));
-				current_state = l_transform(current_state, rules);
-			}
-		</script>
-	</body>
+    <div class="demo">
+
+      <div class="toolbar">
+        <button type="button" class="btn btn-primary" onclick="grow_system()">Grow the poem</button>
+        <button type="button" class="btn" onclick="clear_box()">Restart</button>
+        <span class="hint">click repeatedly</span>
+      </div>
+
+      <div class="output" id="poem" aria-live="polite"></div>
+
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Zane Blanton</span>
+    <nav>
+      <a href="https://github.com/zscore">GitHub</a> &nbsp;
+      <a href="https://www.linkedin.com/in/zane-blanton-b7b62145">LinkedIn</a> &nbsp;
+      <a href="https://medium.com/@zeblanton">Medium</a> &nbsp;
+      <a href="/feed.xml">RSS</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="./l_system.js"></script>
+<script>
+  var initial_state = ['DET', 'N', 'V'];
+  var current_state = initial_state.slice();
+
+  var pos_to_word = {};
+  pos_to_word[','] = [', '];
+  pos_to_word['.'] = ['. '];
+  pos_to_word['ADJ'] = [' wriggly', ' sneaky', ' slippery', ' weaselly'];
+  pos_to_word['ADV'] = [' abruptly', ' quietly', ' flippantly', ' floatingly'];
+  pos_to_word['CNJ'] = [' and', ' if', ' although', ' for'];
+  pos_to_word['DET'] = [' such', ' this', ' that'];
+  pos_to_word['MOD'] = [' should', ' would', ' could'];
+  pos_to_word['N'] = [' weasel', ' dance', ' sneak', ' pounce'];
+  pos_to_word['P'] = [' on', ' at', ' around', ' atop'];
+  pos_to_word['PRO'] = [' it', ' they', ' me', ' I', ' he', ' him', ' her', ' his'];
+  pos_to_word['TO'] = [' to'];
+  pos_to_word['V'] = [' sneaks', ' pounces', ' dances', ' weasels'];
+  pos_to_word['VD'] = [' sneaked', ' pounced', ' danced', ' weaseled'];
+  pos_to_word['VN'] = [' had sneaked', ' had pounced', ' had danced', ' had weaseled'];
+
+  function clear_box() {
+    document.getElementById("poem").innerHTML = "";
+    current_state = initial_state.slice();
+  }
+
+  function grow_system() {
+    var poem = document.getElementById("poem");
+    for (var i = 0; i < current_state.length; i++) {
+      var posbl_words = pos_to_word[current_state[i]];
+      poem.appendChild(document.createTextNode(posbl_words[Math.floor(Math.random() * posbl_words.length)]));
+    }
+    poem.appendChild(document.createElement("br"));
+    poem.appendChild(document.createTextNode(" "));
+    poem.appendChild(document.createElement("br"));
+    current_state = l_transform(current_state, rules);
+  }
+</script>
+
+</body>
 </html>
