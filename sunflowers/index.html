@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>sunflower-composition — Zane Blanton</title>
+<meta name="description" content="Procedural animated sunflower fields, rendered by single-file C programs with no libraries and no assets — every pixel computed from the code.">
+<meta name="author" content="Zane Blanton">
+<meta property="og:title" content="sunflower-composition">
+<meta property="og:description" content="Procedural animated sunflower fields in single-file C — no libraries, no assets, every pixel computed from the code.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://zscore.github.io/sunflowers/">
+<meta property="og:image" content="https://zscore.github.io/sunflowers/interference.jpg">
+<link rel="canonical" href="https://zscore.github.io/sunflowers/">
+<link rel="alternate" type="application/rss+xml" title="Zane Blanton" href="/feed.xml">
+<link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="/">zane blanton</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="/about/">About</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+
+    <section class="hero">
+      <a class="back" href="/">&larr; projects</a>
+      <h1>sunflower-composition</h1>
+      <p>
+        Four animated pieces, each one a single C file that writes raw RGB frames
+        to stdout. No libraries, no assets, no scene files &mdash; every pixel is
+        computed from the code, piped straight into ffmpeg.
+      </p>
+      <p>
+        All four draw the same procedurally-grown sunflower from
+        <code>flower.h</code> and differ only in what tells the flowers what to
+        do. The videos below are compressed previews; the full renders and the
+        long write-up are in
+        <a href="https://github.com/zscore/sunflower-composition">the repo</a>.
+      </p>
+    </section>
+
+    <div class="section-head">
+      <h2>Pieces</h2>
+      <span class="count">4</span>
+    </div>
+
+    <ul class="pieces">
+
+      <li class="piece">
+        <figure>
+          <video src="sunflowers.mp4" poster="sunflowers.jpg" preload="none"
+                 controls loop muted playsinline
+                 aria-label="sunflowers — a field of animated sunflowers opening and closing to draw a cat as a halftone"></video>
+          <figcaption>30 s loop &middot; sound off</figcaption>
+        </figure>
+        <div class="piece-body">
+          <h2>sunflowers</h2>
+          <p class="spec">36&times;64 grid &middot; 1440&times;2560 &middot; 30 s</p>
+          <p>
+            The original. A cat is rasterised off-screen and its brightness tells
+            each flower how far to open, so the field draws the cat as a halftone
+            &mdash; a cat that peeks in from off-frame and the whole crop has to
+            reorganise to render.
+          </p>
+          <p>
+            The flowers never snap to their target. Each runs its own
+            spring-damper integrator, so petals overshoot when the brightness
+            arrives and settle afterwards. The field leads; the flowers lag, each
+            by its own amount.
+          </p>
+        </div>
+      </li>
+
+      <li class="piece">
+        <figure>
+          <video src="interference.mp4" poster="interference.jpg" preload="none"
+                 controls loop muted playsinline
+                 aria-label="interference — a sunflower field driven by superposed wave fields through twelve movements"></video>
+          <figcaption>48 s loop &middot; sound off</figcaption>
+        </figure>
+        <div class="piece-body">
+          <h2>interference</h2>
+          <p class="spec">27&times;48 grid &middot; 1080&times;1920 &middot; 48 s &middot; 12 movements</p>
+          <p>
+            The cat is thrown away and replaced by a single scalar function,
+            always a superposition of wave terms, sampled once per frame at the
+            centre of every one of the 1296 cells:
+          </p>
+          <div class="formula">V(c, r, t) &nbsp;&rarr;&nbsp; roughly [-1, 1]</div>
+          <p>
+            Three readings come off it. How far each flower opens is a smoothstep
+            window on <code>V</code> &mdash; applied to <code>|V|</code> on the
+            movements with standing nodes, which pins the nodal lines shut so you
+            can <em>see</em> them as seams of closed buds. Which way each flower
+            looks is <code>tilt&middot;&nabla;V + curl&middot;perp(&nabla;V)</code>,
+            so a head leans down the slope of the wave it is standing on. And its
+            colour is <code>hue += 9.5&middot;V</code> &mdash; crests run
+            lemon-bright, troughs drop toward deep honey.
+          </p>
+          <p>
+            Twelve movements of 4 s, cross-fading over the last 0.95 s. Every
+            frequency is an integer harmonic of the 48 s loop, so the piece is
+            exactly periodic: frame 1439 differs from frame 0 by about as much as
+            any two ordinary consecutive frames.
+          </p>
+        </div>
+      </li>
+
+      <li class="piece">
+        <figure>
+          <video src="lattice.mp4" poster="lattice.jpg" preload="none"
+                 controls loop muted playsinline
+                 aria-label="lattice — the same wave field rebuilt so that no flower may ever move quickly"></video>
+          <figcaption>48 s loop &middot; sound off</figcaption>
+        </figure>
+        <div class="piece-body">
+          <h2>lattice</h2>
+          <p class="spec">36&times;64 grid &middot; 1080&times;1920 &middot; 48 s &middot; 8 movements</p>
+          <p>
+            <em>interference</em> rebuilt under one extra rule: no flower may
+            ever move quickly. Instrumenting the older piece showed heads yawing
+            at 5400&deg;/s &mdash; not a wave effect but a bug of representation,
+            since facing was integrated as a vector and a head sitting on a
+            stationary point of the field could have its <code>atan2</code> swing
+            through 180&deg; in one frame while nothing about it actually moved.
+            Here facing is carried as <code>(yaw, pitch)</code> and integrated
+            along the shortest arc, which removes that by construction. Yaw is
+            capped at 46&deg;/s.
+          </p>
+          <p>
+            Slow turned out to be a design principle rather than a tax. What
+            makes a field slow is not low spatial frequency but that its fine
+            structure is <em>stationary</em> while only a coarse envelope
+            evolves &mdash; and for a sum of plane waves whose time-dependence
+            lives only in their phases, the rate of change is bounded
+            independently of the wavenumbers. So the quasicrystal movement can be
+            made as fine as 36 columns will sample for free. That mode has a
+            name: it is the <strong>phason</strong> of a quasicrystal, which
+            rearranges the tiling locally without sliding it anywhere. Structure
+            that rearranges without travelling is exactly the kind of motion a
+            field of flowers can actually perform.
+          </p>
+        </div>
+      </li>
+
+      <li class="piece">
+        <figure>
+          <video src="heliotrope.mp4" poster="heliotrope.jpg" preload="none"
+                 controls loop muted playsinline
+                 aria-label="heliotrope — a coarse field of sunflowers that look around, with petals moving one at a time"></video>
+          <figcaption>72 s loop &middot; sound off</figcaption>
+        </figure>
+        <div class="piece-body">
+          <h2>heliotrope</h2>
+          <p class="spec">18&times;32 grid &middot; 1080&times;1920 &middot; 72 s &middot; 6 movements</p>
+          <p>
+            The other pieces use the flowers as a display: a field is computed
+            and the heads are the pixels it gets drawn with. This one runs on the
+            coarsest grid in the repo, where one head is 120 px across, and at
+            that size a head is too big to be a pixel. So it gets driven by two
+            things at once &mdash; a sun it actually looks at, and the field
+            coupled in as a signed side-scalar.
+          </p>
+          <p>
+            Every petal also moves on its own. Each blade swings, lifts, droops
+            and stretches on its own pair of harmonics and its own two phases,
+            hashed from the cell and the petal index, sharing nothing with the
+            blade beside it. That is the whole difference between a badge being
+            animated and a head: petals that all move together read as a sprite
+            being rotated no matter how slowly you rotate it, because rigid
+            motion is the one thing a viewer recognises instantly.
+          </p>
+          <p>
+            The amplitudes are deliberately tiny &mdash; the worst case in the
+            piece is a petal tip moving 3.4 px/s, about one petal-width every six
+            seconds. You are not meant to catch it happening; you are meant to
+            look away and look back.
+          </p>
+        </div>
+      </li>
+
+    </ul>
+
+    <div class="section-head">
+      <h2>The flower</h2>
+    </div>
+
+    <article class="prose">
+      <p>
+        <code>flower.h</code> draws the head as a small three-dimensional object
+        rather than a flat badge, and every piece includes it. One world-space
+        sun lights the whole field: each head builds an orthonormal frame from
+        its own yaw and pitch, and every ray floret, seed and bract is shaded
+        through it, so the field agrees about where the light comes from. That is
+        most of what separates it from a halftone of yellow dots.
+      </p>
+      <p>
+        The petals are surfaces, cupped across their width and drooped along
+        their length, with no dark keyline anywhere &mdash; what separates one
+        petal from the next is the shadow each lays along the edges of the one
+        beneath, which is what a photograph shows and an inked outline does not.
+        The disc is a baked 192&sup2; texture of a 200-floret phyllotaxis
+        packing, so the parastichy spirals fall out of the packing rather than
+        being drawn, and it runs about 45% of the head across &mdash; roughly what
+        <em>Helianthus</em> does, and most of what keeps these from reading as
+        gerberas.
+      </p>
+      <p>
+        Per-flower identity does the rest: petal count, spin, curl, size, one of
+        three colourways, an individual openness gamma, and about one ray floret
+        in twenty-two simply missing &mdash; all hashed from the cell's
+        coordinates and fixed for the whole piece.
+      </p>
+      <p class="prose-foot">
+        Sources, the full-resolution renders and a much longer write-up are in
+        <a href="https://github.com/zscore/sunflower-composition">the repo</a>.
+      </p>
+    </article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Zane Blanton</span>
+    <nav>
+      <a href="https://github.com/zscore">GitHub</a> &nbsp;
+      <a href="https://www.linkedin.com/in/zane-blanton-b7b62145">LinkedIn</a> &nbsp;
+      <a href="https://medium.com/@zeblanton">Medium</a> &nbsp;
+      <a href="/feed.xml">RSS</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+// Autoplay the first piece so something is moving on arrival, unless the
+// visitor asked for reduced motion or is on a metered-feeling connection.
+(function () {
+  var first = document.querySelector('.piece video');
+  if (!first) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (navigator.connection && navigator.connection.saveData) return;
+  first.preload = 'auto';
+  first.autoplay = true;
+  first.play().catch(function () { /* browser declined; poster stays */ });
+})();
+</script>
+
+</body>
+</html>

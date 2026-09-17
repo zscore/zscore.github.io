@@ -582,3 +582,89 @@ main { flex: 1; padding-block: clamp(3rem, 8vw, 6rem) 4rem; }
   font-size: 0.8125rem;
   color: var(--text-faint);
 }
+
+/* ---------- video pieces (sunflower-composition) ---------- */
+
+.pieces {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 4rem);
+  margin-bottom: clamp(3.5rem, 8vw, 6rem);
+}
+
+.piece {
+  display: grid;
+  gap: clamp(1.25rem, 3vw, 2rem);
+  align-items: start;
+  min-width: 0;
+}
+
+@media (min-width: 48rem) {
+  .piece { grid-template-columns: minmax(0, 17rem) minmax(0, 1fr); }
+}
+
+.piece figure { margin: 0; min-width: 0; }
+
+.piece video {
+  width: 100%;
+  max-width: 22rem;
+  margin-inline: auto;
+  aspect-ratio: 9 / 16;
+  display: block;
+  background: #07080a;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+}
+
+.piece figcaption {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.02em;
+  color: var(--text-faint);
+  text-align: center;
+  margin-top: 0.6rem;
+}
+
+.piece-body { min-width: 0; max-width: var(--measure); }
+
+.piece-body h2 {
+  font-size: 1.375rem;
+  font-weight: 580;
+  letter-spacing: -0.015em;
+  margin-bottom: 0.35rem;
+}
+
+.piece-body .spec {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--text-faint);
+  margin-bottom: 1rem;
+}
+
+.piece-body p { color: var(--text-dim); font-size: 0.9375rem; text-wrap: pretty; }
+.piece-body p + p { margin-top: 0.85rem; }
+
+.piece-body code {
+  font-family: var(--mono);
+  font-size: 0.875em;
+  background: var(--bg);
+  border: 1px solid var(--line-soft);
+  border-radius: 5px;
+  padding: 0.1em 0.4em;
+  color: var(--text);
+}
+
+/* a standalone block of maths, centred, for the one formula worth showing */
+.formula {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  color: var(--text);
+  background: var(--bg-elev);
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  margin-top: 1rem;
+  overflow-x: auto;
+}
